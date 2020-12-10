@@ -9,10 +9,7 @@ public class TallGrassController : MonoBehaviour
     [SerializeField]
     private int encounterChance = 10;
 
-    [SerializeField]
-    private EnemyTable enemyTable;
-
-    public UnityEvent<Enemy> onEnemyEncountered;
+    public UnityEvent onEnemyEncountered;
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.1f) {
@@ -22,11 +19,7 @@ public class TallGrassController : MonoBehaviour
 
         if (Random.Range(0, 999) < encounterChance) {
             Debug.Log("ENCOUNTERED AN ENEMY");
-            onEnemyEncountered.Invoke(enemyTable.GetRandomEnemy());
-
-
-            // TEMPORARY
-            SceneManager.LoadScene("Battle");
+            onEnemyEncountered.Invoke();
         }
     }
 }

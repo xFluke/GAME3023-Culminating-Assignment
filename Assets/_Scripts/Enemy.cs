@@ -10,7 +10,12 @@ public class Enemy : ScriptableObject
 
     [SerializeField]
     private Sprite sprite;
+    public Sprite Sprite {
+        get { return sprite; }
+    }
 
     [SerializeField]
     private float maxHP;
+
+    
 }

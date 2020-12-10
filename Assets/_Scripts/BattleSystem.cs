@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -12,12 +14,11 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.onBattleSceneLoaded.AddListener(OnSceneLoaded);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+   void OnSceneLoaded(Enemy e) {
+        enemy.GetComponent<SpriteRenderer>().sprite = e.Sprite;
     }
 }

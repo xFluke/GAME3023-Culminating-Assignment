@@ -13,6 +13,6 @@ public class EnemyTable : ScriptableObject
     }
 
     public Enemy GetRandomEnemy() {
-        return enemies[Random.Range(0, enemies.Length - 1)];
+        return enemies[Random.Range(0, enemies.Length)];
     }
 }

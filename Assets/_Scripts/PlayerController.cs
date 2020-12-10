@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float speed = 5;
 
-    [SerializeField]
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
+
+    void Start() {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
         Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movementVector *= speed;
-        rigidbody.velocity = movementVector;
+        rb.velocity = movementVector;
     }
 }
