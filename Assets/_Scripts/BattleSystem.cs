@@ -37,7 +37,13 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-   void OnSceneLoaded(Enemy e) {
+   void OnSceneLoaded(Enemy e, Ability[] playerAbilities) {
+        // Setup Enemy
         enemy.GetComponent<SpriteRenderer>().sprite = e.Sprite;
+
+        // Setup Player
+        player.GetComponent<BattlingCharacter>().SetAbilities(playerAbilities);
+
+       
     }
 }
