@@ -1364,11 +1364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTable: {fileID: 11400000, guid: c795aeb9474c84047be177b404ebf36f, type: 2}
-  playerAbilities:
-  - {fileID: 11400000, guid: cf367830b2edf2a4dac0e8b1950a2d08, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: afb08686bad99e347bccc319186d2c13, type: 2}
-  - {fileID: 11400000, guid: 2fd48a50f4be212449e166403de35a9d, type: 2}
   onBattleSceneLoaded:
     m_PersistentCalls:
       m_Calls: []

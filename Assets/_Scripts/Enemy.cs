@@ -16,4 +16,6 @@ public class Enemy : ScriptableObject
 
     [SerializeField]
     private float maxHP;
+
+    
 }

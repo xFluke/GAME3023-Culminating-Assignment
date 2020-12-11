@@ -5,22 +5,18 @@ using UnityEngine;
 public class Ability : ScriptableObject
 {
     [SerializeField]
-    private new string name;
-    public string Name {
-        get { return name; }
-    }
+    string  abilityName = "Ability";
 
     [TextArea]
     [SerializeField]
-    string description;
-    public string Description {
-        get { return description; }
-    }
+    string description = "";    
+
+    public int damage = 0;
 
     [SerializeField]
-    float successChance = 0.0f;
-    public float SuccessChance {
-        get { return successChance; }
-    }
+    float hitChance = 0.0f;
+
+
+
     
 }
