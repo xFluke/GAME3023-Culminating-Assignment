@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4f39ff8cdb14924982d8817d6327be1, type: 3}
-  m_Name: Punch
+  m_Name: DoublePunch
   m_EditorClassIdentifier: 
-  name: Punch
-  description: Strike an enemy with your fist
-  successChance: 100
+  name: Double Punch
+  description: 'Strike with your fists twice
+
+'
+  successChance: 50
   onAbilityCastFail:
     m_PersistentCalls:
       m_Calls: []
-  damage: 30
-  numberOfTimes: 1
+  damage: 50
+  numberOfTimes: 2
   onDoingDamage:
     m_PersistentCalls:
       m_Calls: []

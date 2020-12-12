@@ -77,6 +77,7 @@ public class BattleSystem : MonoBehaviour
 
         if (target.Health <= 0) {
             onBattlingCharacterDeath.Invoke(target);
+            Debug.Log(target + " died");
         }
     }
 

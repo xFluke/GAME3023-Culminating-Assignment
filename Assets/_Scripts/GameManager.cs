@@ -27,7 +27,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         onBattleSceneLoaded.Invoke(enemyTable.GetRandomEnemy(), playerAbilities);
-
-
     }
 }

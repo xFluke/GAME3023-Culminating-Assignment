@@ -12,15 +12,19 @@ public class DamageAbility : Ability
         get { return damage; }
     }
 
+    [SerializeField]
+    int numberOfTimes = 1;
+
     public UnityEvent<int, BattlingCharacter> onDoingDamage;
 
     public override void Cast(BattlingCharacter target) {
-        if (AttemptCast()) {
-            onDoingDamage.Invoke(damage, target);
+        for (int i = 0; i < numberOfTimes; i++) {
+            if (AttemptCast()) {
+                onDoingDamage.Invoke(damage, target);
+            }
+            else {
+                onAbilityCastFail.Invoke();
+            }
         }
-        else {
-            onAbilityCastFail.Invoke();
-        }
-
     }
 }
