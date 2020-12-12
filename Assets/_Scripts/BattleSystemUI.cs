@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class BattleSystemUI : MonoBehaviour
 {
     [SerializeField]
-    Scrollbar playerHealthBar;
+    Slider playerHealthBar;
 
     [SerializeField]
-    Scrollbar enemyHealthBar;
+    Slider enemyHealthBar;
 
     [SerializeField]
     int animateSpeed;
@@ -33,23 +33,26 @@ public class BattleSystemUI : MonoBehaviour
 
     IEnumerator AnimateHPBarRoutine(BattlingCharacter target, int damage)
     {
-        int startingHealth = target.Health;
-        int endHealth = target.Health - damage;
+        int startingHealth = target.Health + damage;
+        int endHealth = target.Health;
 
-        Scrollbar targetScrollbar;
+        if (endHealth < 0) {
+            endHealth = 0;
+        }
+
+        Slider targetSlider;
         if (target.characterType == CharacterType.Player)
         {
-            targetScrollbar = playerHealthBar;
+            targetSlider = playerHealthBar;
         }
         else
         {
-            targetScrollbar = enemyHealthBar;
+            targetSlider = enemyHealthBar;
         }
 
         for (int currentHealth = startingHealth; currentHealth > endHealth; currentHealth--) 
         {
-            targetScrollbar.size = (float)currentHealth / target.maxHealth;
-            Debug.Log((float)currentHealth / target.maxHealth);
+            targetSlider.value = currentHealth;
             yield return new WaitForSeconds(1 / animateSpeed);
         }
 

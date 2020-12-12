@@ -80,7 +80,7 @@ public class BattleSystem : MonoBehaviour
         target.Health -= dmg;
 
         Debug.Log("DID " + dmg + " damage to " + target.name);
-        onCharacterHealthUpdate.Invoke(enemy, dmg);
+        onCharacterHealthUpdate.Invoke(target, dmg);
 
         if (target.Health <= 0) {
             onBattlingCharacterDeath.Invoke(target);
