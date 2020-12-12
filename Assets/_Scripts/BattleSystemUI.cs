@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,10 +15,21 @@ public class BattleSystemUI : MonoBehaviour
     [SerializeField]
     int animateSpeed;
 
-    
+    [SerializeField]
+    TMPro.TextMeshProUGUI abilityDescription;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI succesChanceLabel;
+
     void Start()
     {
         FindObjectOfType<BattleSystem>().onCharacterHealthUpdate.AddListener(AnimateHPBar);
+        FindObjectOfType<BattleSystem>().onAbilityDescriptionUpdate.AddListener(UpdateAbilityDescription);
+    }
+
+    private void UpdateAbilityDescription(string description, string successChance) {
+        abilityDescription.text = description;
+        succesChanceLabel.text = successChance;
     }
 
     IEnumerator animateHPRoutine = null;

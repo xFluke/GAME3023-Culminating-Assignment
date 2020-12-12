@@ -25,6 +25,7 @@ public class BattleSystem : MonoBehaviour
 
     public UnityEvent<BattlingCharacter> onBattlingCharacterDeath;
     public UnityEvent<BattlingCharacter, int> onCharacterHealthUpdate;
+    public UnityEvent<string, string> onAbilityDescriptionUpdate;
 
     // Start is called before the first frame update
     void Start()
@@ -52,9 +53,19 @@ public class BattleSystem : MonoBehaviour
         // Listen for button presses
         BattleButtonHandler battleButtonHandler = FindObjectOfType<BattleButtonHandler>();
         battleButtonHandler.onAbilityButtonPressed.AddListener(OnAbilityButtonPressed);
+        battleButtonHandler.onAbilityButtonHovered.AddListener(OnAbilityButtonHovered);
+        battleButtonHandler.onAbilityButtonExit.AddListener(OnAbilityButtonExit);
 
         // Listen for ability casts
         ListenForAbilityCasts(playerAbilities);
+    }
+
+    private void OnAbilityButtonExit(int index) {
+        onAbilityDescriptionUpdate.Invoke("", "");
+    }
+
+    private void OnAbilityButtonHovered(int index) {
+        onAbilityDescriptionUpdate.Invoke(player.GetAbilityAtIndex(index).Description, player.GetAbilityAtIndex(index).SuccessChance.ToString() + "%");
     }
 
     private void ListenForAbilityCasts(Ability[] playerAbilities) {
