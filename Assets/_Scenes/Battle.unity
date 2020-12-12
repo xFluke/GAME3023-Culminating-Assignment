@@ -319,7 +319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 204663321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 559014814}
+        m_TargetAssemblyTypeName: BattleButtonHandler, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &204663321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,7 +855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 545679002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 559014814}
+        m_TargetAssemblyTypeName: BattleButtonHandler, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &545679002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559014813}
   - component: {fileID: 559014812}
+  - component: {fileID: 559014814}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -912,8 +937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlePhase: 0
-  player: {fileID: 1633804354}
-  enemy: {fileID: 2025225022}
+  player: {fileID: 1633804357}
+  enemy: {fileID: 2025225025}
+  onBattlingCharacterDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &559014813
 Transform:
   m_ObjectHideFlags: 0
@@ -928,6 +956,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &559014814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559014811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08158adf5bcc334c9d93a36c9fc936f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1732115866}
+  - {fileID: 204663318}
+  - {fileID: 619816028}
+  - {fileID: 545678999}
+  onAbilityButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &619816028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1057,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619816031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 559014814}
+        m_TargetAssemblyTypeName: BattleButtonHandler, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &619816031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3305,7 +3365,6 @@ GameObject:
   - component: {fileID: 1569501295}
   - component: {fileID: 1569501294}
   - component: {fileID: 1569501293}
-  - component: {fileID: 1569501297}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3393,23 +3452,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1569501297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569501292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08158adf5bcc334c9d93a36c9fc936f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 1732115866}
-  - {fileID: 204663318}
-  - {fileID: 619816028}
-  - {fileID: 545678999}
 --- !u!1 &1610883228
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,6 +5517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4648280d6c8c9fe4689259e748087444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   abilities: []
 --- !u!1 &1732115866
 GameObject:
@@ -5557,7 +5600,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732115869}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 559014814}
+        m_TargetAssemblyTypeName: BattleButtonHandler, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1732115869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5740,6 +5795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2025225024}
   - component: {fileID: 2025225023}
+  - component: {fileID: 2025225025}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -5812,6 +5868,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2025225025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025225022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4648280d6c8c9fe4689259e748087444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  abilities: []
 --- !u!1 &2128265999
 GameObject:
   m_ObjectHideFlags: 0
