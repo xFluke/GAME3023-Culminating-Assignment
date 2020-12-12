@@ -9,6 +9,9 @@ public class BattleButtonHandler : MonoBehaviour
     GameObject[] buttons;
 
     public UnityEvent<int> onAbilityButtonPressed;
+    public UnityEvent<int> onAbilityButtonHovered;
+    public UnityEvent<int> onAbilityButtonExit;
+
 
     void Start() {
         GameManager gameManager = FindObjectOfType<GameManager>();
@@ -29,5 +32,13 @@ public class BattleButtonHandler : MonoBehaviour
 
     public void ButtonPressed(int index) {
         onAbilityButtonPressed.Invoke(index);
+    }
+
+    public void ButtonHovered(int index) {
+        onAbilityButtonHovered.Invoke(index);
+    }
+
+    public void ButtonExit(int index) {
+        onAbilityButtonExit.Invoke(index);
     }
 }

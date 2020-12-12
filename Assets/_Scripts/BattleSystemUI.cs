@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class BattleSystemUI : MonoBehaviour
 {
@@ -12,12 +14,33 @@ public class BattleSystemUI : MonoBehaviour
     Slider enemyHealthBar;
 
     [SerializeField]
-    int animateSpeed;
+    float animateSpeed;
 
-    
+    [SerializeField]
+    TMPro.TextMeshProUGUI abilityDescription;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI successChanceLabel;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI battleText;
+
+    public UnityEvent onHPBarAnimationCompleted;
+
     void Start()
     {
         FindObjectOfType<BattleSystem>().onCharacterHealthUpdate.AddListener(AnimateHPBar);
+        FindObjectOfType<BattleSystem>().onAbilityDescriptionUpdate.AddListener(UpdateAbilityDescription);
+        FindObjectOfType<BattleSystem>().updateBattleText.AddListener(UpdateBattleText);
+    }
+
+    private void UpdateBattleText(string text) {
+        battleText.text += text + "\n";
+    }
+
+    private void UpdateAbilityDescription(string description, string successChance) {
+        abilityDescription.text = description;
+        successChanceLabel.text = successChance;
     }
 
     IEnumerator animateHPRoutine = null;
@@ -57,5 +80,6 @@ public class BattleSystemUI : MonoBehaviour
         }
 
         animateHPRoutine = null;
+        onHPBarAnimationCompleted.Invoke();
     }
 }
