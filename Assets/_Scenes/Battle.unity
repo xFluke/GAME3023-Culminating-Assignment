@@ -1343,6 +1343,7 @@ GameObject:
   - component: {fileID: 559014812}
   - component: {fileID: 559014814}
   - component: {fileID: 559014815}
+  - component: {fileID: 559014816}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -1603,15 +1604,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d033990b259f46a5eda230390132d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthBar: {fileID: 0}
+  playerHealthBar: {fileID: 473155170}
   enemyHealthBar: {fileID: 1028596860}
+--- !u!114 &559014816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559014811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35edf4b5973900248bd0adfbc54fefbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1633804354}
+  enemy: {fileID: 2025225022}
   animateSpeed: 10
+  playerAnimator: {fileID: 1633804358}
+  enemyAnimator: {fileID: 2025225026}
   abilityDescription: {fileID: 1620529425}
   successChanceLabel: {fileID: 144322228}
   battleText: {fileID: 1986401752}
   onHPBarAnimationCompleted:
     m_PersistentCalls:
       m_Calls: []
+
 --- !u!1 &619816028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6491,6 +6509,7 @@ GameObject:
   - component: {fileID: 1633804356}
   - component: {fileID: 1633804355}
   - component: {fileID: 1633804357}
+  - component: {fileID: 1633804358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6579,6 +6598,25 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   abilities: []
+--- !u!95 &1633804358
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633804354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e688e2055783afc49bfdfd8a6979318d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1732115866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6977,6 +7015,7 @@ GameObject:
   - component: {fileID: 2025225024}
   - component: {fileID: 2025225023}
   - component: {fileID: 2025225025}
+  - component: {fileID: 2025225026}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -7065,6 +7104,25 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   abilities: []
+--- !u!95 &2025225026
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025225022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1786cf34b3d19e4394632221e189245, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2088724200
 GameObject:
   m_ObjectHideFlags: 0

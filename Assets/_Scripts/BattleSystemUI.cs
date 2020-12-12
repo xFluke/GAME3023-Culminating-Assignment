@@ -73,7 +73,7 @@ public class BattleSystemUI : MonoBehaviour
             targetSlider = enemyHealthBar;
         }
 
-        for (int currentHealth = startingHealth; currentHealth > endHealth; currentHealth--) 
+        for (int currentHealth = startingHealth; currentHealth >= endHealth; currentHealth--) 
         {
             targetSlider.value = currentHealth;
             yield return new WaitForSeconds(1 / animateSpeed);
