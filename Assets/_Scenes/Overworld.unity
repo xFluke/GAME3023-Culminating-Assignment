@@ -329,7 +329,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.01664317
+  m_Distance: 0.18087833
   m_DampingRatio: 0.74
   m_Frequency: 0.8
 --- !u!50 &431748653
@@ -1364,6 +1364,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTable: {fileID: 11400000, guid: c795aeb9474c84047be177b404ebf36f, type: 2}
+  playerAbilities:
+  - {fileID: 11400000, guid: cf367830b2edf2a4dac0e8b1950a2d08, type: 2}
+  - {fileID: 11400000, guid: b14406848f7dd5749b424790bd71e9fe, type: 2}
+  - {fileID: 11400000, guid: afb08686bad99e347bccc319186d2c13, type: 2}
+  - {fileID: 11400000, guid: 2fd48a50f4be212449e166403de35a9d, type: 2}
   onBattleSceneLoaded:
     m_PersistentCalls:
       m_Calls: []
@@ -38163,7 +38168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099523680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.01, y: 10.09, z: 0}
+  m_LocalPosition: {x: 10.05, y: 10.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1541550953}

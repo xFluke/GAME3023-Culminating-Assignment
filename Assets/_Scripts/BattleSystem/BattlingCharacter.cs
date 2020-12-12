@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BattlingCharacter : MonoBehaviour
 {   
-    int health;
-
     public int maxHealth;
 
+    [SerializeField]
+    int health;
     public int Health {
         get { return health; }
         set { health = value; }
     }
-    
+
     [SerializeField]
     Ability[] abilities;
 
@@ -20,6 +20,7 @@ public class BattlingCharacter : MonoBehaviour
     {
         health = maxHealth;
     }
+
 
     public void SetAbilities(Ability[] _abilities) {
         abilities = _abilities;

@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private EnemyTable enemyTable;
 
-    public UnityEvent<Enemy> onBattleSceneLoaded;
+    [SerializeField]
+    private Ability[] playerAbilities;
+
+    public UnityEvent<Enemy, Ability[]> onBattleSceneLoaded;
 
     void Start() {
         DontDestroyOnLoad(gameObject);
@@ -23,6 +26,6 @@ public class GameManager : MonoBehaviour
     IEnumerator FireBattleSceneLoadedEvent() {
         yield return new WaitForSeconds(0.1f);
 
-        onBattleSceneLoaded.Invoke(enemyTable.GetRandomEnemy());
+        onBattleSceneLoaded.Invoke(enemyTable.GetRandomEnemy(), playerAbilities);
     }
 }
