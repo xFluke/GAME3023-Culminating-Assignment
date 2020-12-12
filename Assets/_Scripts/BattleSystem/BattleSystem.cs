@@ -53,6 +53,8 @@ public class BattleSystem : MonoBehaviour
     }
 
     void OnSceneLoaded(Enemy e, Ability[] playerAbilities) {
+        Debug.Log("Setting up");
+
         // Setup Enemy
         enemy.gameObject.GetComponent<SpriteRenderer>().sprite = e.Sprite;
         enemy.Name = e.Name;
@@ -165,6 +167,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(DelayShowingUI());
 
         // Advance Turn
+        AdvanceTurns();
     }
 
     IEnumerator DelayShowingUI() {

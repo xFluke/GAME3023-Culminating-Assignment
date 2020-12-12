@@ -6,6 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private GameManager() { }
+    private static GameManager instance;
+    public static GameManager Instance {
+        get {
+            if (instance == null) {
+                instance = FindObjectOfType<GameManager>();
+            }
+            return instance;
+        }
+
+        private set { }
+    }
+
     [SerializeField]
     private EnemyTable enemyTable;
 
@@ -15,7 +28,16 @@ public class GameManager : MonoBehaviour
     public UnityEvent<Enemy, Ability[]> onBattleSceneLoaded;
 
     void Start() {
+        GameManager[] gameManagers = FindObjectsOfType<GameManager>();
+        foreach (GameManager mgr in gameManagers) {
+            if (mgr != Instance) {
+                Destroy(mgr.gameObject);
+            }
+        }
+
         DontDestroyOnLoad(gameObject);
+
+        FindObjectOfType<TallGrassController>().onEnemyEncountered.AddListener(LoadBattleScene);
     }
 
     public void LoadBattleScene() {
