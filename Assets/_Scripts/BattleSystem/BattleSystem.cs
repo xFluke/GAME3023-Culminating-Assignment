@@ -24,6 +24,7 @@ public class BattleSystem : MonoBehaviour
     private BattlingCharacter enemy;
 
     public UnityEvent<BattlingCharacter> onBattlingCharacterDeath;
+    public UnityEvent<BattlingCharacter, int> onCharacterHealthUpdate;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +80,7 @@ public class BattleSystem : MonoBehaviour
         target.Health -= dmg;
 
         Debug.Log("DID " + dmg + " damage to " + target.name);
+        onCharacterHealthUpdate.Invoke(enemy, dmg);
 
         if (target.Health <= 0) {
             onBattlingCharacterDeath.Invoke(target);
