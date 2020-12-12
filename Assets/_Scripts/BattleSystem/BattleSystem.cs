@@ -100,14 +100,11 @@ public class BattleSystem : MonoBehaviour
         // Hide UI
         hideUI.Invoke();
 
-        // Animate
-
-
         // Do Damage
         target.Health -= dmg;
         Debug.Log("DID " + dmg + " damage to " + target.name);
 
-        // Update Health Bars
+        // Update Health Bars and Animate
         onCharacterHealthUpdate.Invoke(target, dmg);
 
         // Display Battle Text
@@ -122,6 +119,7 @@ public class BattleSystem : MonoBehaviour
         }
 
         // Advance Turn
+        AdvanceTurns();
     }
 
     void OnMiscAbilityCastSuccess(string successText) {
