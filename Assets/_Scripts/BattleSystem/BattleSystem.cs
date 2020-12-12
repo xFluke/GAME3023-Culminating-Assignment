@@ -135,9 +135,14 @@ public class BattleSystem : MonoBehaviour
         updateBattleText.Invoke(failText);
 
         // Delay couple seconds and then show UI
-        //showUI.Invoke();
-
+        StartCoroutine(DelayShowingUI());
 
         // Advance Turn
+    }
+
+    IEnumerator DelayShowingUI() {
+        yield return new WaitForSeconds(2);
+
+        showUI.Invoke();
     }
 }
