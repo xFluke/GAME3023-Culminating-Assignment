@@ -56,6 +56,8 @@ public class BattleSystemUI : MonoBehaviour
 
     IEnumerator AnimateHPBarRoutine(BattlingCharacter target, int damage)
     {
+        Debug.Log("ANIMATING HP BAR");
+
         int startingHealth = target.Health + damage;
         int endHealth = target.Health;
 

@@ -1606,6 +1606,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealthBar: {fileID: 473155170}
   enemyHealthBar: {fileID: 1028596860}
+  animateSpeed: 10
+  abilityDescription: {fileID: 1620529425}
+  successChanceLabel: {fileID: 144322228}
+  battleText: {fileID: 1986401752}
+  onHPBarAnimationCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &559014816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1623,13 +1630,6 @@ MonoBehaviour:
   animateSpeed: 10
   playerAnimator: {fileID: 1633804358}
   enemyAnimator: {fileID: 2025225026}
-  abilityDescription: {fileID: 1620529425}
-  successChanceLabel: {fileID: 144322228}
-  battleText: {fileID: 1986401752}
-  onHPBarAnimationCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-
 --- !u!1 &619816028
 GameObject:
   m_ObjectHideFlags: 0

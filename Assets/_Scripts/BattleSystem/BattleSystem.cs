@@ -102,6 +102,7 @@ public class BattleSystem : MonoBehaviour
 
         // Animate
 
+
         // Do Damage
         target.Health -= dmg;
         Debug.Log("DID " + dmg + " damage to " + target.name);
