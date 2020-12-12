@@ -7,6 +7,9 @@ public class Enemy : ScriptableObject
 {
     [SerializeField]
     private new string name;
+    public string Name {
+        get { return name; }
+    }
 
     [SerializeField]
     private Sprite sprite;
@@ -15,5 +18,15 @@ public class Enemy : ScriptableObject
     }
 
     [SerializeField]
-    private float maxHP;
+    private int maxHP;
+    public int MaxHP {
+        get { return maxHP; }
+    }
+
+    [SerializeField]
+    Ability[] abilities;
+    
+    public Ability[] Abilities {
+        get { return abilities; }
+    }
 }

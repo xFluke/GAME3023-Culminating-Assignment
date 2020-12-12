@@ -23,12 +23,13 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private BattlingCharacter enemy;
 
-    public UnityEvent<BattlingCharacter> onBattlingCharacterDeath;
+    public UnityEvent onBattleEnd;
     public UnityEvent<BattlingCharacter, int> onCharacterHealthUpdate;
     public UnityEvent<string, string> onAbilityDescriptionUpdate;
     public UnityEvent hideUI;
     public UnityEvent showUI;
     public UnityEvent<string> updateBattleText;
+    public UnityEvent<BattlingCharacter, BattlingCharacter> onEnemyTurnStart;
 
     // Start is called before the first frame update
     void Start()
@@ -44,14 +45,25 @@ public class BattleSystem : MonoBehaviour
         {
             battlePhase = BattlePhase.Player;
         }
+
+        if (battlePhase == BattlePhase.Enemy) {
+            Debug.Log("Starting enemy turn");
+            onEnemyTurnStart.Invoke(enemy, player);
+        }
     }
 
-   void OnSceneLoaded(Enemy e, Ability[] playerAbilities) {
+    void OnSceneLoaded(Enemy e, Ability[] playerAbilities) {
         // Setup Enemy
         enemy.gameObject.GetComponent<SpriteRenderer>().sprite = e.Sprite;
+        enemy.Name = e.Name;
+        enemy.MaxHealth = e.MaxHP;
+        
+        enemy.SetAbilities(e.Abilities);
 
         // Setup Player
         player.SetAbilities(playerAbilities);
+        player.Name = "Player";
+        player.MaxHealth = 300;
 
         // Listen for button presses
         BattleButtonHandler battleButtonHandler = FindObjectOfType<BattleButtonHandler>();
@@ -66,8 +78,17 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void OnHPBarAnimationCompleted() {
-        showUI.Invoke();
+        if (player.Health <= 0 || enemy.Health <= 0) {
+            // death handler
+        }
+
+        AdvanceTurns();
+
+        if (battlePhase == BattlePhase.Player) {
+            showUI.Invoke();
+        }
     }
+        
 
     private void OnAbilityButtonExit(int index) {
         onAbilityDescriptionUpdate.Invoke("", "");
@@ -79,15 +100,18 @@ public class BattleSystem : MonoBehaviour
 
     private void ListenForAbilityCasts(Ability[] playerAbilities) {
         foreach (Ability ability in playerAbilities) {
-            if (ability is DamageAbility) {
-                DamageAbility temp = (DamageAbility)ability;
-                temp.onDoingDamage.AddListener(OnDamageAbilityCast);
+            if (ability != null) {
+
+                if (ability is DamageAbility) {
+                    DamageAbility temp = (DamageAbility)ability;
+                    temp.onDoingDamage.AddListener(OnDamageAbilityCast);
+                }
+                else if (ability is MiscAbility) {
+                    MiscAbility temp = (MiscAbility)ability;
+                    temp.onMiscAbilityCastSuccess.AddListener(OnMiscAbilityCastSuccess);
+                }
+                ability.onAbilityCastFail.AddListener(OnAbilityCastFail);
             }
-            else if (ability is MiscAbility) {
-                MiscAbility temp = (MiscAbility)ability;
-                temp.onMiscAbilityCastSuccess.AddListener(OnMiscAbilityCastSuccess);
-            }
-            ability.onAbilityCastFail.AddListener(OnAbilityCastFail);
         }
     }
 
@@ -102,28 +126,32 @@ public class BattleSystem : MonoBehaviour
 
         // Do Damage
         target.Health -= dmg;
-        Debug.Log("DID " + dmg + " damage to " + target.name);
+        Debug.Log("DID " + dmg + " damage to " + target.Name);
 
         // Update Health Bars and Animate
         onCharacterHealthUpdate.Invoke(target, dmg);
 
         // Display Battle Text
-        updateBattleText.Invoke(target.name + " took " + dmg + " damage");
+        updateBattleText.Invoke("Used " + abiityName + " on " + target.Name);
+        updateBattleText.Invoke(target.Name + " took " + dmg + " damage" + " from " + abiityName);
 
         // Check for Death
         if (target.Health <= 0) {
-            onBattlingCharacterDeath.Invoke(target);
-            updateBattleText.Invoke(target.name + " died");
-
+            
+            updateBattleText.Invoke(target.Name + " died");
             // end battle scene
         }
-
-        // Advance Turn
-        AdvanceTurns();
     }
 
     void OnMiscAbilityCastSuccess(string successText) {
+        // Hide UI
+        hideUI.Invoke();
+
         Debug.Log(successText);
+        updateBattleText.Invoke(successText);
+
+        StartCoroutine(SwitchScenes());
+        
     }
 
     void OnAbilityCastFail(string failText) {
@@ -143,5 +171,12 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         showUI.Invoke();
+    }
+
+    IEnumerator SwitchScenes() {
+        yield return new WaitForSeconds(2);
+
+        onBattleEnd.Invoke();
+
     }
 }

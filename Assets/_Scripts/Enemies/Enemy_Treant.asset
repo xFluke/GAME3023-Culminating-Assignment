@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Treant
   sprite: {fileID: 21300000, guid: 06a287cc97cb64df8a11af10f2352365, type: 3}
+  maxHP: 30
+  abilities:
+  - {fileID: 11400000, guid: cf367830b2edf2a4dac0e8b1950a2d08, type: 2}

@@ -11,7 +11,21 @@ public class BattlingCharacter : MonoBehaviour
 {   
     public CharacterType characterType;
 
-    public int maxHealth;
+    private new string name;
+    public string Name {
+        get { return name; }
+        set { name = value; }
+    }
+
+
+    private int maxHealth;
+    public int MaxHealth {
+        get { return maxHealth; }
+        set {
+            maxHealth = value;
+              health = value; 
+        }
+    }
 
     [SerializeField]
     int health;
@@ -23,17 +37,15 @@ public class BattlingCharacter : MonoBehaviour
     [SerializeField]
     Ability[] abilities;
 
-    void Start()
-    {
-        health = maxHealth;
-    }
-
-
     public void SetAbilities(Ability[] _abilities) {
         abilities = _abilities;
     }
 
     public Ability GetAbilityAtIndex(int index) {
         return abilities[index];
+    }
+
+    public Ability GetRandomAbility() {
+        return abilities[Random.Range(0, abilities.Length - 1)];
     }
 }

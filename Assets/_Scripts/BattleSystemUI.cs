@@ -32,6 +32,14 @@ public class BattleSystemUI : MonoBehaviour
         FindObjectOfType<BattleSystem>().onCharacterHealthUpdate.AddListener(AnimateHPBar);
         FindObjectOfType<BattleSystem>().onAbilityDescriptionUpdate.AddListener(UpdateAbilityDescription);
         FindObjectOfType<BattleSystem>().updateBattleText.AddListener(UpdateBattleText);
+        FindObjectOfType<GameManager>().onBattleSceneLoaded.AddListener(OnSceneLoaded);
+    }
+
+    private void OnSceneLoaded(Enemy e, Ability[] abilities) {
+        enemyHealthBar.maxValue = e.MaxHP;
+        enemyHealthBar.value = e.MaxHP;
+        playerHealthBar.maxValue = 300;
+        playerHealthBar.value = 300;
     }
 
     private void UpdateBattleText(string text) {
@@ -59,6 +67,7 @@ public class BattleSystemUI : MonoBehaviour
         Debug.Log("ANIMATING HP BAR");
 
         int startingHealth = target.Health + damage;
+
         int endHealth = target.Health;
 
         if (endHealth < 0) {

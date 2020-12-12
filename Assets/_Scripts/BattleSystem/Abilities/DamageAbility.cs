@@ -23,6 +23,7 @@ public class DamageAbility : Ability
             onDoingDamage.Invoke(damage, target, Name);
         }
         else {
+            Debug.Log("MISSED");
             onAbilityCastFail.Invoke(failText);
         }
         

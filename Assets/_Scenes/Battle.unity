@@ -1344,6 +1344,7 @@ GameObject:
   - component: {fileID: 559014814}
   - component: {fileID: 559014815}
   - component: {fileID: 559014816}
+  - component: {fileID: 559014817}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -1552,6 +1553,9 @@ MonoBehaviour:
   updateBattleText:
     m_PersistentCalls:
       m_Calls: []
+  onEnemyTurnStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &559014813
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,6 +1634,21 @@ MonoBehaviour:
   animateSpeed: 10
   playerAnimator: {fileID: 1633804358}
   enemyAnimator: {fileID: 2025225026}
+--- !u!114 &559014817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559014811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045a3cb792c661e4694071ba0947cbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnemyTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &619816028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6595,7 +6614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 0
-  maxHealth: 100
   health: 100
   abilities: []
 --- !u!95 &1633804358
@@ -7101,9 +7119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 1
-  maxHealth: 100
   health: 100
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: cf367830b2edf2a4dac0e8b1950a2d08, type: 2}
 --- !u!95 &2025225026
 Animator:
   serializedVersion: 3

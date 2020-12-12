@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Escape
   description: Attempt to escape
-  successChance: 20
+  successChance: 50
   onAbilityCastFail:
     m_PersistentCalls:
       m_Calls: []

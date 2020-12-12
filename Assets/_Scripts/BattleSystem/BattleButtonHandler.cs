@@ -25,7 +25,8 @@ public class BattleButtonHandler : MonoBehaviour
                 buttons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playerAbilities[i].Name;
             }
             else {
-                buttons[i].gameObject.SetActive(false);
+                Destroy(buttons[i].gameObject);
+                buttons[i] = null;
             }   
         }
     }

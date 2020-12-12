@@ -21,11 +21,19 @@ public class GameManager : MonoBehaviour
     public void LoadBattleScene() {
         SceneManager.LoadScene("Battle");
         StartCoroutine(FireBattleSceneLoadedEvent());
+
     }
 
     IEnumerator FireBattleSceneLoadedEvent() {
         yield return new WaitForSeconds(0.1f);
 
         onBattleSceneLoaded.Invoke(enemyTable.GetRandomEnemy(), playerAbilities);
+
+        FindObjectOfType<BattleSystem>().onBattleEnd.AddListener(OnBattleEnd);
+
+    }
+
+    void OnBattleEnd() {
+        SceneManager.LoadScene("Overworld");
     }
 }
