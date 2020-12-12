@@ -24,8 +24,6 @@ public class BattleSystem : MonoBehaviour
     private BattlingCharacter enemy;
 
     public UnityEvent<BattlingCharacter> onBattlingCharacterDeath;
-    public UnityEvent<BattlingCharacter> onEnemyTurn;
-    public UnityEvent onPlayerTurn;
 
     // Start is called before the first frame update
     void Start()
@@ -34,23 +32,13 @@ public class BattleSystem : MonoBehaviour
         gameManager.onBattleSceneLoaded.AddListener(OnSceneLoaded);
     }
 
-    void AdvanceTurns()
+    public void AdvanceTurns()
     {
-        Debug.Log("advancing turn");
-
         battlePhase++;
         if (battlePhase >= BattlePhase.Count)
         {
             battlePhase = BattlePhase.Player;
         }
-
-        if (battlePhase == BattlePhase.Player) {
-            onPlayerTurn.Invoke();
-        }
-        else if (battlePhase == BattlePhase.Enemy) {
-            onEnemyTurn.Invoke(player);
-        }
-
     }
 
    void OnSceneLoaded(Enemy e, Ability[] playerAbilities) {
@@ -96,17 +84,13 @@ public class BattleSystem : MonoBehaviour
             onBattlingCharacterDeath.Invoke(target);
             Debug.Log(target + " died");
         }
-
-        AdvanceTurns();
     }
 
     void OnMiscAbilityCastSuccess(string successText) {
         Debug.Log(successText);
-        AdvanceTurns();
     }
 
     void OnAbilityCastFail(string failText) {
         Debug.Log(failText);
-        AdvanceTurns();
     }
 }
