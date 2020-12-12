@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Ability : ScriptableObject
 {
@@ -22,5 +23,18 @@ public class Ability : ScriptableObject
     public float SuccessChance {
         get { return successChance; }
     }
-    
+
+    public UnityEvent onAbilityCastFail;
+
+    protected bool AttemptCast() {
+        if (Random.Range(1, 100) < successChance) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public virtual void Cast(BattlingCharacter target) { }
+
 }

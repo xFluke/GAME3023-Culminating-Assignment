@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class BattleButtonHandler : MonoBehaviour
 {
-    GameManager gameManager;
-
     [SerializeField]
     GameObject[] buttons;
 
+    public UnityEvent<int> onAbilityButtonPressed;
+
     void Start() {
-        gameManager = FindObjectOfType<GameManager>();
+        GameManager gameManager = FindObjectOfType<GameManager>();
         gameManager.onBattleSceneLoaded.AddListener(OnSceneLoaded);
     }
 
@@ -29,5 +29,9 @@ public class BattleButtonHandler : MonoBehaviour
                 buttons[i].gameObject.SetActive(false);
             }   
         }
+    }
+
+    public void ButtonPressed(int index) {
+        onAbilityButtonPressed.Invoke(index);
     }
 }
