@@ -15,15 +15,19 @@ public class DamageAbility : Ability
     [SerializeField]
     int numberOfTimes = 1;
 
-    public UnityEvent<int, BattlingCharacter> onDoingDamage;
+    [TextArea]
+    [SerializeField]
+    string failText;
+
+    public UnityEvent<int, BattlingCharacter, string> onDoingDamage;
 
     public override void Cast(BattlingCharacter target) {
         for (int i = 0; i < numberOfTimes; i++) {
             if (AttemptCast()) {
-                onDoingDamage.Invoke(damage, target);
+                onDoingDamage.Invoke(damage, target, Name);
             }
             else {
-                onAbilityCastFail.Invoke();
+                onAbilityCastFail.Invoke(failText);
             }
         }
     }

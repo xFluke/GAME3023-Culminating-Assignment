@@ -20,6 +20,7 @@ MonoBehaviour:
       m_Calls: []
   damage: 30
   numberOfTimes: 1
+  failText: You somehow missed a 100% hit chance ability
   onDoingDamage:
     m_PersistentCalls:
       m_Calls: []

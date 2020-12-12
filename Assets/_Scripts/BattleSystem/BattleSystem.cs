@@ -62,6 +62,11 @@ public class BattleSystem : MonoBehaviour
                 DamageAbility temp = (DamageAbility)ability;
                 temp.onDoingDamage.AddListener(OnDoingDamage);
             }
+            else if (ability is MiscAbility) {
+                MiscAbility temp = (MiscAbility)ability;
+                temp.onMiscAbilityCastSuccess.AddListener(OnMiscAbilityCastSuccess);
+            }
+            ability.onAbilityCastFail.AddListener(OnAbilityCastFail);
         }
     }
 
@@ -70,7 +75,7 @@ public class BattleSystem : MonoBehaviour
         player.GetAbilityAtIndex(index).Cast(enemy);
     }
 
-    void OnDoingDamage(int dmg, BattlingCharacter target) {
+    void OnDoingDamage(int dmg, BattlingCharacter target, string abiityName) {
         target.Health -= dmg;
 
         Debug.Log("DID " + dmg + " damage to " + target.name);
@@ -81,4 +86,11 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    void OnMiscAbilityCastSuccess(string successText) {
+        Debug.Log(successText);
+    }
+
+    void OnAbilityCastFail(string failText) {
+        Debug.Log(failText);
+    }
 }

@@ -24,7 +24,15 @@ public class Ability : ScriptableObject
         get { return successChance; }
     }
 
-    public UnityEvent onAbilityCastFail;
+    //[TextArea]
+    //[SerializeField]
+    //string successText;
+    //public string SuccessText {
+    //    get { return successText; }
+    //}
+
+
+    public UnityEvent<string> onAbilityCastFail;
 
     protected bool AttemptCast() {
         if (Random.Range(1, 100) < successChance) {

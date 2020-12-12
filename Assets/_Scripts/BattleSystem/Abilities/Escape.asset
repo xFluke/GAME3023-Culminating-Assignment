@@ -15,3 +15,11 @@ MonoBehaviour:
   name: Escape
   description: Attempt to escape
   successChance: 20
+  onAbilityCastFail:
+    m_PersistentCalls:
+      m_Calls: []
+  onMiscAbilityCastSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  successText: You successfully escaped!
+  failText: You failed to escape

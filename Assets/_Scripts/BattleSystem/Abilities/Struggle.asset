@@ -15,3 +15,11 @@ MonoBehaviour:
   name: Struggle
   description: Attempt to instantly win the battle
   successChance: 10
+  onAbilityCastFail:
+    m_PersistentCalls:
+      m_Calls: []
+  onMiscAbilityCastSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  successText: Success! You wre able to instantly win the battle
+  failText: You failed to instantly win the battle

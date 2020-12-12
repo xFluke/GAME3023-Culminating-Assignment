@@ -19,11 +19,7 @@ public class BattleButtonHandler : MonoBehaviour
         for (int i = 0; i < playerAbilities.Length; i++) {
             
             if (playerAbilities[i] != null) {
-                Debug.Log(playerAbilities[i].Name);
-
                 buttons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playerAbilities[i].Name;
-
-                Debug.Log("Changing Name of " + buttons[i].name + "to " + playerAbilities[i]);
             }
             else {
                 buttons[i].gameObject.SetActive(false);
