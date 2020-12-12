@@ -135,7 +135,7 @@ public class BattleSystem : MonoBehaviour
         updateBattleText.Invoke(failText);
 
         // Delay couple seconds and then show UI
-        showUI.Invoke();
+        //showUI.Invoke();
 
 
         // Advance Turn
