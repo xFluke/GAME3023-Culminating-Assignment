@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Struggle
   description: Attempt to instantly win the battle
-  successChance: 100
+  successChance: 20
   onAbilityCastFail:
     m_PersistentCalls:
       m_Calls: []

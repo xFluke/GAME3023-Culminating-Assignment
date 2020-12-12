@@ -81,7 +81,23 @@ public class BattleSystem : MonoBehaviour
 
     private void OnHPBarAnimationCompleted() {
         if (player.Health <= 0 || enemy.Health <= 0) {
-            // death handler
+            // Check for Death
+            if (enemy.Health <= 0) {
+
+                updateBattleText.Invoke(enemy.Name + " died");
+                updateBattleText.Invoke("You Win!");
+
+                StartCoroutine(SwitchScenes());
+                return;
+            }
+
+            else if (player.Health <= 0) {
+                updateBattleText.Invoke("You died");
+
+                StartCoroutine(SwitchScenes());
+
+                return;
+            }
         }
 
         AdvanceTurns();
@@ -136,13 +152,7 @@ public class BattleSystem : MonoBehaviour
         // Display Battle Text
         updateBattleText.Invoke("Used " + abiityName + " on " + target.Name);
         updateBattleText.Invoke(target.Name + " took " + dmg + " damage" + " from " + abiityName);
-
-        // Check for Death
-        if (target.Health <= 0) {
-            
-            updateBattleText.Invoke(target.Name + " died");
-            // end battle scene
-        }
+        
     }
 
     void OnMiscAbilityCastSuccess(string successText) {
@@ -165,15 +175,15 @@ public class BattleSystem : MonoBehaviour
 
         // Delay couple seconds and then show UI
         StartCoroutine(DelayShowingUI());
-
-        // Advance Turn
-        AdvanceTurns();
     }
 
     IEnumerator DelayShowingUI() {
         yield return new WaitForSeconds(2);
 
         showUI.Invoke();
+
+        // Advance Turn
+        AdvanceTurns();
     }
 
     IEnumerator SwitchScenes() {

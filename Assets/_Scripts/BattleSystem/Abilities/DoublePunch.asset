@@ -16,11 +16,11 @@ MonoBehaviour:
   description: 'Strike with your fists twice
 
 '
-  successChance: 25
+  successChance: 75
   onAbilityCastFail:
     m_PersistentCalls:
       m_Calls: []
-  damage: 50
+  damage: 70
   failText: You missed
   onDoingDamage:
     m_PersistentCalls:
