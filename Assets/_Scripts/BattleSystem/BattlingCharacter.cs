@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterType
+{
+    Player = 0,
+    Enemy = 1
+}
 public class BattlingCharacter : MonoBehaviour
 {   
+    public CharacterType characterType;
+
     public int maxHealth;
 
     [SerializeField]

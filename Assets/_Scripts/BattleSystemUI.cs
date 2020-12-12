@@ -12,30 +12,45 @@ public class BattleSystemUI : MonoBehaviour
     Scrollbar enemyHealthBar;
 
     [SerializeField]
-    BattlingCharacter player;
-    [SerializeField]
-    BattlingCharacter enemy;
+    int animateSpeed;
+
+    
+    void Start()
+    {
+        FindObjectOfType<BattleSystem>().onCharacterHealthUpdate.AddListener(AnimateHPBar);
+    }
 
     IEnumerator animateHPRoutine = null;
-    public void AnimateHPBar(int damage)
+    public void AnimateHPBar(BattlingCharacter target, int damage)
     {
         if (animateHPRoutine != null)
         {
             StopCoroutine(animateHPRoutine);
         }
-        animateHPRoutine = AnimateTextRoutine(damage);
+        animateHPRoutine = AnimateHPBarRoutine(target, damage);
         StartCoroutine(animateHPRoutine);
     }
 
-    IEnumerator AnimateTextRoutine(int damage)
+    IEnumerator AnimateHPBarRoutine(BattlingCharacter target, int damage)
     {
-        int startingHealth = player.Health;
-        int endHealth = player.Health - damage;
+        int startingHealth = target.Health;
+        int endHealth = target.Health - damage;
+
+        Scrollbar targetScrollbar;
+        if (target.characterType == CharacterType.Player)
+        {
+            targetScrollbar = playerHealthBar;
+        }
+        else
+        {
+            targetScrollbar = enemyHealthBar;
+        }
 
         for (int currentHealth = startingHealth; currentHealth > endHealth; currentHealth--) 
         {
-            playerHealthBar.size = currentHealth / player.maxHealth;
-            yield return new WaitForSeconds(1 / 60);
+            targetScrollbar.size = (float)currentHealth / target.maxHealth;
+            Debug.Log((float)currentHealth / target.maxHealth);
+            yield return new WaitForSeconds(1 / animateSpeed);
         }
 
         animateHPRoutine = null;
