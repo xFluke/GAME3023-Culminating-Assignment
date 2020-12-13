@@ -24,15 +24,18 @@ public class CharacterFootstepAudio : MonoBehaviour
             switch (player.groundType)
             {
                 case GroundType.GRASS:
-                    footstepSource.clip = footstepSounds[(int)GroundType.GRASS];
+                    //Debug.Log("G");
+                    footstepSource.clip = footstepSounds[0];
                     break;
             
                 case GroundType.ROAD:
-                    footstepSource.clip = footstepSounds[(int)GroundType.ROAD];
+                    //Debug.Log("R");
+                    footstepSource.clip = footstepSounds[1];
                     break;
             
                 case GroundType.TALLGRASS:
-                    footstepSource.clip = footstepSounds[(int)GroundType.TALLGRASS];
+                    //Debug.Log("T");
+                    footstepSource.clip = footstepSounds[2];
                     break;
 
                 default:

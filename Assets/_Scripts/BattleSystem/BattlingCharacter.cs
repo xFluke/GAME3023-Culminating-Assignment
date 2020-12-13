@@ -9,6 +9,7 @@ public enum CharacterType
 }
 public class BattlingCharacter : MonoBehaviour
 {   
+    public AudioSource audioSource;
     public CharacterType characterType;
 
     private new string name;
@@ -47,5 +48,10 @@ public class BattlingCharacter : MonoBehaviour
 
     public Ability GetRandomAbility() {
         return abilities[Random.Range(0, abilities.Length - 1)];
+    }
+
+    public void PlaySoundEffect()
+    {
+        audioSource.Play();
     }
 }

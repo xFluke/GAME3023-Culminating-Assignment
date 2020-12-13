@@ -51,8 +51,8 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        //gameManager.onBattleSceneLoaded.AddListener(OnEnterBattleSceneHandler);
-        //gameManager.onOverworldSceneLoaded.AddListener(OnEnterOverworldSceneHandler);
+        gameManager.onBattleSceneLoaded.AddListener(OnEnterBattleSceneHandler);
+        gameManager.onOverworldSceneLoaded.AddListener(OnExitBattleSceneHandler);
 
         MusicManager[] musicManagers = FindObjectsOfType<MusicManager>();
         foreach (MusicManager mgr in musicManagers)
@@ -66,12 +66,12 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(transform.root);
     }
 
-    public void OnEnterBattleSceneHandler()
+    public void OnEnterBattleSceneHandler(Enemy e, Ability[] a)
     {
         PlayTrack(Track.Battle);
     }
 
-    public void OnEncounterExitHandler()
+    public void OnExitBattleSceneHandler()
     {
         FadeInTrackOverSeconds(Track.OverWorld, 5.0f);
     }

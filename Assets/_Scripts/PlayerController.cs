@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public bool isWalking = false;
 
     void Start() {
+        GameSaver gameSaver = GetComponentInParent<GameSaver>();
+        gameSaver.Load();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -27,14 +29,31 @@ public class PlayerController : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Grass":
-                groundType = GroundType.GRASS;
-                break;
             case "Road":
                 groundType = GroundType.ROAD;
+                
                 break;
             case "TallGrass":
                 groundType = GroundType.TALLGRASS;
+                
+                break;
+            default:
+                groundType = GroundType.GRASS;
+                break;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "Road":
+                groundType = GroundType.GRASS;
+                
+                break;
+            case "TallGrass":
+                groundType = GroundType.GRASS;
+                
                 break;
             default:
                 groundType = GroundType.GRASS;

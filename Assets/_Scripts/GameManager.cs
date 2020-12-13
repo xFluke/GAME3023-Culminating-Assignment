@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private Ability[] playerAbilities;
 
     public UnityEvent<Enemy, Ability[]> onBattleSceneLoaded;
+    public UnityEvent onOverworldSceneLoaded;
 
     void Start() {
         GameManager[] gameManagers = FindObjectsOfType<GameManager>();
@@ -41,9 +42,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadBattleScene() {
+        GameSaver gameSaver = FindObjectOfType<GameSaver>();
+        gameSaver.Save();
         SceneManager.LoadScene("Battle");
         StartCoroutine(FireBattleSceneLoadedEvent());
-
     }
 
     IEnumerator FireBattleSceneLoadedEvent() {
@@ -57,5 +59,12 @@ public class GameManager : MonoBehaviour
 
     void OnBattleEnd() {
         SceneManager.LoadScene("Overworld");
+        StartCoroutine(OverWorldSceneLoadedEvent());
+    }
+
+    IEnumerator OverWorldSceneLoadedEvent() {
+        yield return new WaitForSeconds(0.1f);
+
+        onOverworldSceneLoaded.Invoke();
     }
 }
