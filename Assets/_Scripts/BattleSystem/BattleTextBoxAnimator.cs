@@ -14,10 +14,6 @@ public class BattleTextBoxAnimator : MonoBehaviour
 
     IEnumerator animateTextRoutine = null;
 
-    public void AnimateTextCharacterTurn(ICharacter whoseTurn)
-    {
-        AnimateText("It is " + whoseTurn.name + "'s turn.");
-    }
     public void AnimateText(string message)
     {
         if (animateTextRoutine != null)
